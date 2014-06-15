@@ -38,7 +38,6 @@
 
   $(document).ready(deshittify)
   $(window).on('pjax:success', function () {
-    console.log('ajax')
     deshittify();
   })
 })();
