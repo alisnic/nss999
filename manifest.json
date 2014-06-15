@@ -1,0 +1,27 @@
+{
+  "name": "NSS 999.md - Not So Shifty 999.md",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Improves user experience on 999.md",
+  "homepage_url": "http://extensionizr.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "permissions": [
+    "http://999.md/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://999.md/*"
+      ],
+      "js": [
+        "js/jquery/jquery.min.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
