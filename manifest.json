@@ -12,13 +12,13 @@
   "permissions": [
     "http://999.md/*"
   ],
+  "web_accessible_resources" : ["/js/nss_main.js"],
   "content_scripts": [
     {
       "matches": [
         "http://999.md/*"
       ],
       "js": [
-        "js/jquery/jquery.min.js",
         "src/inject/inject.js"
       ]
     }
