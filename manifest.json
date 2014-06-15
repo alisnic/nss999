@@ -19,7 +19,7 @@
         "http://999.md/*"
       ],
       "js": [
-        "src/inject/inject.js"
+        "src/inject.js"
       ]
     }
   ]
