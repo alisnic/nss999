@@ -1,4 +1,4 @@
-nss999
+nss999 (Chrome Extension)
 ======
 
 Not So Shifty 999.md
