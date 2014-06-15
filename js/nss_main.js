@@ -7,8 +7,23 @@
   var deshittify = function () {
     var map = {},
         $entries = $('.ads-list-table tr'),
+        $objects = $('object'),
         duplicates = 0,
-        withoutPrice = 0;
+        withoutPrice = 0,
+        floatingAds = 0;
+
+    $objects.each(function () {
+      var $el = $(this)
+
+      if ($el.parent().css('z-index') === '10000') {
+        $el.parent().remove()
+        floatingAds++
+      }
+    })
+
+    if ($objects.length) {
+      nslog(floatingAds.toString() + " floating ads removed")
+    }
 
     $entries.each(function () {
       var $el = $(this),
@@ -17,7 +32,6 @@
           key = title + "-" + price;
 
       if (price.length === 0) {
-        //nslog(title + " - no price");
         withoutPrice++;
         return $el.remove();
       }
