@@ -5,7 +5,7 @@
   var nslog = function (s) { console.log("NSS: " + s); }
 
   var dedupe = function ($list, titleSelector, priceSelector) {
-    var map = {}, duplicates = 0, withoutPrice = 0
+    var map = {}, duplicates = 0, withoutPrice = 0;
 
     $list.each(function () {
       var $el = $(this),
@@ -26,10 +26,10 @@
       }
     })
 
-    return duplicates
+    return duplicates;
   }
 
-  var deshittify = function () {
+  var cleanup = function () {
     var $entries = $('.ads-list-table tr'),
         $detailedEntries = $('ul.ads-list-detail li'),
         $photoEntries = $('ul.ads-list-photo li'),
@@ -54,8 +54,6 @@
     console.log(dedupe($photoEntries, '.ads-list-photo-item-title a', '.ads-list-photo-item-price'))
   }
 
-  $(document).ready(deshittify)
-  $(window).on('pjax:success', function () {
-    deshittify();
-  })
+  $(document).ready(cleanup)
+  $(window).on('pjax:success', function () { cleanup(); })
 })();
