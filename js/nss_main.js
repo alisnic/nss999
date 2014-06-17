@@ -26,7 +26,7 @@
       }
     })
 
-    return duplicates;
+    return duplicates + withoutPrice;
   }
 
   var cleanup = function () {
@@ -49,9 +49,14 @@
       nslog(floatingAds.toString() + " floating ads removed")
     }
 
-    console.log(dedupe($entries, 'h3 a', '.ads-list-table-price'))
-    console.log(dedupe($detailedEntries, '.ads-list-detail-item-title a', '.ads-list-detail-item-price'))
-    console.log(dedupe($photoEntries, '.ads-list-photo-item-title a', '.ads-list-photo-item-price'))
+    var table = dedupe($entries, 'h3 a', '.ads-list-table-price'),
+        detailed = dedupe($detailedEntries, '.ads-list-detail-item-title a', '.ads-list-detail-item-price'),
+        photo = dedupe($photoEntries, '.ads-list-photo-item-title a', '.ads-list-photo-item-price')
+
+
+    nslog("table view: " + table  + " entries removed")
+    nslog("detailed view: " + detailed  + " entries removed")
+    nslog("photo view: " + photo  + " entries removed")
   }
 
   $(document).ready(cleanup)
