@@ -5,7 +5,7 @@
   var nslog = function (s) { console.log("NSS: " + s); }
 
   var dedupe = function ($list, titleSelector, priceSelector) {
-    var map = {}, duplicates = 0, withoutPrice = 0;
+    var map = {}, duplicates = 0, withoutPrice = [];
 
     $list.each(function () {
       var $el = $(this),
@@ -14,8 +14,7 @@
           key = title + "-" + price;
 
       if (price.length === 0) {
-        withoutPrice++;
-        return $el.remove();
+        withoutPrice.push($el);
       }
 
       if (map[key]) {
@@ -26,7 +25,14 @@
       }
     })
 
-    return duplicates + withoutPrice;
+    var withoutPriceRemoved = 0
+    if (withoutPrice.length < $list.length) {
+      while (withoutPrice.length) {
+        withoutPriceRemoved++;
+        withoutPrice.pop().remove();
+      }
+    }
+    return duplicates + withoutPriceRemoved;
   }
 
   var cleanup = function () {
@@ -52,7 +58,6 @@
     var table = dedupe($entries, 'h3 a', '.ads-list-table-price'),
         detailed = dedupe($detailedEntries, '.ads-list-detail-item-title a', '.ads-list-detail-item-price'),
         photo = dedupe($photoEntries, '.ads-list-photo-item-title a', '.ads-list-photo-item-price')
-
 
     nslog("table view: " + table  + " entries removed")
     nslog("detailed view: " + detailed  + " entries removed")
