@@ -40,6 +40,7 @@
         $detailedEntries = $('ul.ads-list-detail li'),
         $photoEntries = $('ul.ads-list-photo li'),
         $objects = $('object'),
+        $ads = $('.numbers-placeholder'),
         floatingAds = 0;
 
     $objects.each(function () {
@@ -50,6 +51,9 @@
         floatingAds++
       }
     })
+
+    $ads.remove();
+    nslog($ads.length.toString() + " ads removed");
 
     if ($objects.length) {
       nslog(floatingAds.toString() + " floating ads removed")
